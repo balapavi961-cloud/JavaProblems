@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class ChewbaccaNumber {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Read input as String (because number can be up to 10^18)
+        String x = sc.nextLine();
+
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < x.length(); i++) {
+
+            // Convert character to digit
+            int digit = x.charAt(i) - '0';
+
+            int inverted = 9 - digit;
+
+            // Special case: first digit cannot become 0
+            if (i == 0 && inverted == 0) {
+                result.append(digit);
+            }
+            // Choose minimum between digit and inverted
+            else {
+                result.append(Math.min(digit, inverted));
+            }
+        }
+
+        System.out.println(result.toString());
+        sc.close();
+    }
+}
